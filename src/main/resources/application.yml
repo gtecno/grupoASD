@@ -1,0 +1,53 @@
+## YAML Template.
+---
+server:
+   port: ${vcap.application.port:9999}
+   
+#spring:
+#  jpa:
+#    generate-ddl: true
+    
+
+       
+---
+#==========================================================================
+spring:
+    profiles:
+         active: dev
+    datasource:
+         url:  jdbc:postgresql://localhost:5432/pruebaGrupoASD
+         driver-class-name: org.postgresql.Driver
+         username: postgres
+         password: root
+         test-on-borrow: true
+         validation-query: SELECT 1
+            
+
+
+
+# ==========================================================================
+# = JPA / HIBERNATE
+# ==========================================================================
+
+# Use spring.jpa.properties.* for Hibernate native properties (the prefix is
+# stripped before adding them to the entity manager).
+
+# Show or not log for each sql query
+    jpa:
+        show-sql: true
+
+# Hibernate ddl auto (create, create-drop, update): with "update" the database
+# schema will be automatically updated accordingly to java entities found in
+# the project
+        hibernate:
+            ddl-auto: update   
+            
+# Naming strategy
+            naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+# Allows Hibernate to generate SQL optimized for a particular DBMS 
+#        properties:
+#            hibernate:
+#                dialect: org.hibernate.dialect.PostgreSQL94Dialect
+#       
+ 
