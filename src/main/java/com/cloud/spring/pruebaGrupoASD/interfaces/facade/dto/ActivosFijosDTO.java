@@ -22,15 +22,15 @@ public class ActivosFijosDTO {
     private Float alto;
     private Float largo;
     private Double valorCompra;
-    private Calendar fechaCompra;
-    private Calendar fechaBaja;
+    private String  fechaCompra;
+    private String fechaBaja;
     private String estado;
     private String color;
 
     public ActivosFijosDTO() {
     }
 
-    public ActivosFijosDTO(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, String estado, String color) {
+    public ActivosFijosDTO(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, String fechaCompra, String fechaBaja, String estado, String color) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -46,7 +46,7 @@ public class ActivosFijosDTO {
         this.color = color;
     }
 
-   
+  
 
     public Long getId() {
         return id;
@@ -84,11 +84,11 @@ public class ActivosFijosDTO {
         return valorCompra;
     }
 
-    public Calendar getFechaCompra() {
+    public String getFechaCompra() {
         return fechaCompra;
     }
 
-    public Calendar getFechaBaja() {
+    public String getFechaBaja() {
         return fechaBaja;
     }
 
@@ -99,6 +99,5 @@ public class ActivosFijosDTO {
     public String getColor() {
         return color;
     }
-
 
 }

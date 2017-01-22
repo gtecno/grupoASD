@@ -24,17 +24,18 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  *
  * @author Gabriel Calvo
+ * 
  */
 @RestController
 @Produces(APPLICATION_JSON)
 @Consumes(APPLICATION_JSON)
 @RequestMapping("/ActivoFijo")
-public class ActivosFijossRecurso {
+public class ActivosFijosRecurso {
 
     @Autowired
     private ActivosFijosFacadeService escanerFacadeService;
 
-    @RequestMapping( method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseUtil listarTodosActivosFijos() {
         return escanerFacadeService.listarTodosActivosFijos();
     }
@@ -43,14 +44,16 @@ public class ActivosFijossRecurso {
     public ResponseUtil buscarActivosFijosById(@PathVariable Long id) {
         return escanerFacadeService.buscarActivosFijosById(id);
     }
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseUtil guardarActivosFijos(@RequestBody @Valid  ActivosFijosDTO activosFijosDTO) {
+    public ResponseUtil guardarActivosFijos(@RequestBody @Valid ActivosFijosDTO activosFijosDTO) {
         return escanerFacadeService.guardarActivosFijos(activosFijosDTO);
     }
+
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseUtil actulizarActivosFijos(@RequestBody @Valid  ActivosFijosDTO activosFijosDTO) {
+    public ResponseUtil actulizarActivosFijos(@RequestBody @Valid ActivosFijosDTO activosFijosDTO) {
         return escanerFacadeService.actulizarActivosFijos(activosFijosDTO);
     }
 

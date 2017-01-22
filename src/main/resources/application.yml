@@ -46,8 +46,8 @@ spring:
             naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
 # Allows Hibernate to generate SQL optimized for a particular DBMS 
-#        properties:
-#            hibernate:
-#                dialect: org.hibernate.dialect.PostgreSQL94Dialect
-#       
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+       
  

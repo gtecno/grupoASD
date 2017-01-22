@@ -23,8 +23,9 @@ import javax.persistence.TemporalType;
 public class ActivosFijos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
+    
     private String nombre;
     private String descripcion;
     private String serial;
@@ -33,9 +34,7 @@ public class ActivosFijos {
     private Float alto;
     private Float largo;
     private Double valorCompra;
-    @Temporal(TemporalType.DATE)
     private Calendar fechaCompra;
-    @Temporal(TemporalType.DATE)
     private Calendar fechaBaja;
     @Enumerated(EnumType.STRING)
     private Estado estado;
@@ -111,4 +110,14 @@ public class ActivosFijos {
     public String color() {
         return color;
     }
+
+    public void setFechaCompra(Calendar fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
+
+    public void setFechaBaja(Calendar fechaBaja) {
+        this.fechaBaja = fechaBaja;
+    }
+    
+    
 }

@@ -14,12 +14,12 @@ import com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto.ActivosFijosDTO;
  */
 public interface ActivosFijosFacadeService {
 
-    public ResponseUtil listarTodosActivosFijos();
+   ResponseUtil listarTodosActivosFijos();
 
-    public ResponseUtil buscarActivosFijosById(Long Id);
+   ResponseUtil buscarActivosFijosById(Long Id);
 
-    public ResponseUtil guardarActivosFijos(ActivosFijosDTO activosFijosDTO);
+   ResponseUtil guardarActivosFijos(ActivosFijosDTO activosFijosDTO);
 
-    public ResponseUtil actulizarActivosFijos(ActivosFijosDTO activosFijosDTO);
+   ResponseUtil actulizarActivosFijos(ActivosFijosDTO activosFijosDTO);
 
 }
