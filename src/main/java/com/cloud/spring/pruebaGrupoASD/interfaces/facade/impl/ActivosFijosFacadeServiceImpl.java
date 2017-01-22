@@ -14,7 +14,6 @@ import com.cloud.spring.pruebaGrupoASD.util.ObjectMapperUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.ConstanteUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.FechaConverUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.Calendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
