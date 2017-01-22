@@ -52,7 +52,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         responseUtil = new ResponseUtil();
         try {
             Calendar fechaCompra = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
-            Calendar fechaBaja = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
+            Calendar fechaBaja = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaBaja());
             if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
                 ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
                 if (activosFijosGuardado != null) {
