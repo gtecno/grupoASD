@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package com.cloud.spring.pruebaGrupoASD.aplicacion.util;
+package com.cloud.spring.pruebaGrupoASD.util;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.ObjectMapper;

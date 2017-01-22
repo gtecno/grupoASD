@@ -39,11 +39,12 @@ public class ActivosFijos {
     private Calendar fechaBaja;
     @Enumerated(EnumType.STRING)
     private Estado estado;
+    private String color;
 
     public ActivosFijos() {
     }
 
-    public ActivosFijos(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, Estado estado) {
+    public ActivosFijos(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, Estado estado, String color) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -56,6 +57,7 @@ public class ActivosFijos {
         this.fechaCompra = fechaCompra;
         this.fechaBaja = fechaBaja;
         this.estado = estado;
+        this.color = color;
     }
 
     public Long id() {
@@ -106,4 +108,7 @@ public class ActivosFijos {
         return estado;
     }
 
+    public String color() {
+        return color;
+    }
 }

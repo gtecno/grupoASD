@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.cloud.spring.pruebaGrupoASD.aplicacion.comun;
+package com.cloud.spring.pruebaGrupoASD.util.comun;
 
 import org.springframework.http.HttpStatus;
 

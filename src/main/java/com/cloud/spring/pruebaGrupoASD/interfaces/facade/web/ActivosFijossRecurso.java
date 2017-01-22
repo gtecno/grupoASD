@@ -5,7 +5,7 @@
  */
 package com.cloud.spring.pruebaGrupoASD.interfaces.facade.web;
 
-import com.cloud.spring.pruebaGrupoASD.aplicacion.comun.ResponseUtil;
+import com.cloud.spring.pruebaGrupoASD.util.comun.ResponseUtil;
 import com.cloud.spring.pruebaGrupoASD.interfaces.facade.ActivosFijosFacadeService;
 import com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto.ActivosFijosDTO;
 import javax.validation.Valid;

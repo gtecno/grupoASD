@@ -5,7 +5,7 @@
  */
 package com.cloud.spring.pruebaGrupoASD.interfaces.facade;
 
-import com.cloud.spring.pruebaGrupoASD.aplicacion.comun.ResponseUtil;
+import com.cloud.spring.pruebaGrupoASD.util.comun.ResponseUtil;
 import com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto.ActivosFijosDTO;
 
 /**

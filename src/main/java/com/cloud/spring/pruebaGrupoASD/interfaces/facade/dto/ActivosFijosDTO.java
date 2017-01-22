@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto;
 
 import java.util.Calendar;
@@ -13,7 +12,7 @@ import java.util.Calendar;
  * @author Gabriel Calvo
  */
 public class ActivosFijosDTO {
-    
+
     private Long id;
     private String nombre;
     private String descripcion;
@@ -26,11 +25,12 @@ public class ActivosFijosDTO {
     private Calendar fechaCompra;
     private Calendar fechaBaja;
     private String estado;
+    private String color;
 
     public ActivosFijosDTO() {
     }
 
-    public ActivosFijosDTO(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, String estado) {
+    public ActivosFijosDTO(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, String estado, String color) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -43,7 +43,10 @@ public class ActivosFijosDTO {
         this.fechaCompra = fechaCompra;
         this.fechaBaja = fechaBaja;
         this.estado = estado;
+        this.color = color;
     }
+
+   
 
     public Long getId() {
         return id;
@@ -93,9 +96,9 @@ public class ActivosFijosDTO {
         return estado;
     }
 
-   
-    
-    
-    
-    
+    public String getColor() {
+        return color;
+    }
+
+
 }
