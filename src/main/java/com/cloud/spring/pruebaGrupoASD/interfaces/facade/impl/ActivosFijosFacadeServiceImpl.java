@@ -53,9 +53,9 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
             Calendar fechaCompra = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
             Calendar fechaBaja = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaBaja());
             if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
-                ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
+                ActivosFijos activosFijosGuardado = activosFijosService.actulizarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
                 if (activosFijosGuardado != null) {
-                    responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
+                    responseUtil.setMessage(ConstanteUtil.MSG_UPDATE_EXITOSO);
                     responseUtil.setTipo(ConstanteUtil.CODE_OK);
                     LOGGER.info("ActivoFijo Guardado : ");
                 } else {
@@ -79,7 +79,34 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
 
     @Override
     public ResponseUtil actulizarActivosFijos(ActivosFijosDTO activosFijosDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         LOGGER.info("Update: ");
+        responseUtil = new ResponseUtil();
+        try {
+            Calendar fechaCompra = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
+            Calendar fechaBaja = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaBaja());
+            if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
+                ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
+                if (activosFijosGuardado != null) {
+                    responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
+                    responseUtil.setTipo(ConstanteUtil.CODE_OK);
+                    LOGGER.info("ActivoFijo Actulizado : ");
+                } else {
+                    responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO);
+                    responseUtil.setTipo(ConstanteUtil.CODE_INTERNAL_ERROR);
+                    LOGGER.warn("ActivoFijo Presenta un error : ");
+                }
+            } else {
+                responseUtil.setMessage(ConstanteUtil.MSG_ERROR_FECHAS_MAYOR);
+                responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
+                LOGGER.warn("Fechas de baja no pueden ser mayores que las fechas de compra : ");
+            }
+        } catch (DataIntegrityViolationException e) {
+            LOGGER.error(ConstanteUtil.MSG_ERROR_INTERNO.concat(e.getCause().getCause().getMessage()));
+            responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO.concat(e.getCause().getCause().getMessage()));
+            responseUtil.setTipo(ConstanteUtil.CODE_INTERNAL_ERROR);
+            return responseUtil;
+        }
+        return responseUtil;
     }
 
     private ActivosFijos assemble(ActivosFijosDTO activosFijosDTO, Calendar fechaCompra, Calendar fechaBaja) {
