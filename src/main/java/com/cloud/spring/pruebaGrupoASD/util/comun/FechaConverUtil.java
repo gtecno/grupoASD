@@ -34,5 +34,10 @@ public class FechaConverUtil {
 
         return calendar;
     }
+    
+     public static Boolean compararFechasBajaMayor(Calendar fechaUno, Calendar fechaDos){
+         return fechaUno.before(fechaDos);
+     }
+    
 
 }

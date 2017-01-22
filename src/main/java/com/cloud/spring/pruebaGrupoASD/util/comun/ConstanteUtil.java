@@ -32,8 +32,16 @@ public class ConstanteUtil {
      *
      * MENSAJE DE ERROR INTERNO DEL SISTEMA  CODE_INTERNAL_ERROR 
      */
-    public static String MSG_ERROR_INTERNO ="Se ha producido un error en el sistema  a acontinuación se detalle el error: \n";
+    public static String MSG_ERROR_INTERNO ="Se ha producido un error en el sistema  a acontinuación se detalle el error:  ";
+    /*
+     *
+     * MENSAJE DE ERROR DE FECHAS 
+     */
+    public static String MSG_ERROR_FECHAS_MAYOR="La fecha de baja no puede ser mayor que la fecha de compra  ";
 
+    
+    
+    
     public static final String FORMATO_FECHA = "yyyy-MM-dd";
     public static final String FORMATO_FECHA_CON_HORA = "dd/MM/yyyy hh:mm:ss a";
     

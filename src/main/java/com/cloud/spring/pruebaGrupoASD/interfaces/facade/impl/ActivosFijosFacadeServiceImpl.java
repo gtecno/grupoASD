@@ -14,9 +14,12 @@ import com.cloud.spring.pruebaGrupoASD.util.ObjectMapperUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.ConstanteUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.FechaConverUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.Calendar;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -48,20 +51,27 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         LOGGER.info("Save : ");
         responseUtil = new ResponseUtil();
         try {
-            ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO));
-            if (activosFijosGuardado != null) {
-                responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
-                responseUtil.setTipo(ConstanteUtil.CODE_OK);
-                LOGGER.info("ActivoFijo Guardado : ");
+            Calendar fechaCompra = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
+            Calendar fechaBaja = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
+            if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
+                ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
+                if (activosFijosGuardado != null) {
+                    responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
+                    responseUtil.setTipo(ConstanteUtil.CODE_OK);
+                    LOGGER.info("ActivoFijo Guardado : ");
+                } else {
+                    responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO);
+                    responseUtil.setTipo(ConstanteUtil.CODE_INTERNAL_ERROR);
+                    LOGGER.warn("ActivoFijo Presenta un error : ");
+                }
             } else {
-                responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO);
+                responseUtil.setMessage(ConstanteUtil.MSG_ERROR_FECHAS_MAYOR);
                 responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
                 LOGGER.warn("ActivoFijo Presenta un error : ");
             }
-        } catch (Exception e) {
-            LOGGER.error(e.toString());
-            LOGGER.error(e.getCause().toString());
-            responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO);
+        } catch (DataIntegrityViolationException e) {
+            LOGGER.error(ConstanteUtil.MSG_ERROR_INTERNO.concat(e.getCause().getCause().getMessage()));
+            responseUtil.setMessage(ConstanteUtil.MSG_ERROR_INTERNO.concat(e.getCause().getCause().getMessage()));
             responseUtil.setTipo(ConstanteUtil.CODE_INTERNAL_ERROR);
             return responseUtil;
         }
@@ -73,10 +83,10 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    private ActivosFijos assemble(ActivosFijosDTO activosFijosDTO) {
+    private ActivosFijos assemble(ActivosFijosDTO activosFijosDTO, Calendar fechaCompra, Calendar fechaBaja) {
         ActivosFijos activosFijos = objectMapper.convertValue(activosFijosDTO, ActivosFijos.class);
-        activosFijos.setFechaCompra(FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra()));
-        activosFijos.setFechaBaja(FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaBaja()));
+        activosFijos.setFechaCompra(fechaCompra);
+        activosFijos.setFechaBaja(fechaBaja);
         return activosFijos;
     }
 
