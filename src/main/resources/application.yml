@@ -15,9 +15,9 @@ spring:
     profiles:
          active: dev
     datasource:
-         url:  jdbc:postgresql://localhost:5432/pruebaGrupoASD
-         driver-class-name: org.postgresql.Driver
-         username: postgres
+         url:  jdbc:mysql://localhost:5432/pruebaGrupoASD
+         driver-class-name: com.mysql.jdbc.Driver
+         username: rot
          password: root
          test-on-borrow: true
          validation-query: SELECT 1
