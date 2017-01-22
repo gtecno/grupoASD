@@ -8,6 +8,7 @@ package com.cloud.spring.pruebaGrupoASD.aplicacion.impl;
 import com.cloud.spring.pruebaGrupoASD.aplicacion.ActivosFijosService;
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijos;
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijosRepository;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,11 @@ public class ActivosFijosServiceImpl implements ActivosFijosService {
     @Override
     public ActivosFijos actulizarActivosFijos(ActivosFijos activosFijos) {
         return activosFijosRepository.save(activosFijos);
+    }
+
+    @Override
+    public List<ActivosFijos> listarTodosActivosFijos() {
+        return (List<ActivosFijos>) activosFijosRepository.findAll();
     }
 
 }

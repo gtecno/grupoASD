@@ -37,7 +37,10 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
 
     @Override
     public ResponseUtil listarTodosActivosFijos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        responseUtil = new ResponseUtil();
+        activosFijosService.listarTodosActivosFijos();
+        
+        return responseUtil;
     }
 
     @Override

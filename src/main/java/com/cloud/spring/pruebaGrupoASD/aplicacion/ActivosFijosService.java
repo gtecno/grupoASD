@@ -6,6 +6,7 @@
 package com.cloud.spring.pruebaGrupoASD.aplicacion;
 
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijos;
+import java.util.List;
 
 /**
  *
@@ -16,4 +17,6 @@ public interface ActivosFijosService {
     ActivosFijos guardarActivosFijos(ActivosFijos activosFijos);
 
     ActivosFijos actulizarActivosFijos(ActivosFijos activosFijos);
+
+    List<ActivosFijos> listarTodosActivosFijos();
 }
