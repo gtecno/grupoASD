@@ -1,9 +1,123 @@
 <div ng-controller="activosController as activoCtrl">
-      <div class="row">
+    <div class="row">
         <div class="float-left" style="margin-left: 10px">
-            <h2 style="line-height: 30px;">>Activos Fijos</h2>
+            <h2 style="line-height: 30px;">Activos Fijos</h2>
         </div>
     </div>
-    <div class="section">Activos Fijos</div>
+    <div class="clearfix"></div>
+    <div class="container">
+        <form role="search">
+            <div class="form-control" >
+                <div class="input-group">
+
+                </div>
+                <div>
+                    <input type="text"  class="input-group" placeholder="Buscar">
+                </div>
+                <div class="text-center center-block" >
+                    <button  title="Buscar" class="btn btn-info">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-condensed table-hover" >
+                    <thead>
+                        <tr style="font-weight: bold">
+                            <th class="text-center">#</th>
+                            <th class="text-center">Nombre Activo</th>
+                            <th class="text-center">Descripción</th>
+                            <th class="text-center">Serial</th>
+                            <th class="text-center">Serial Interno</th>
+                            <th class="text-center">Peso</th>
+                            <th class="text-center">Alto</th>
+                            <th class="text-center">Largo</th>
+                            <th class="text-center">Valor de Compra</th>
+                            <th class="text-center">Fecha de Compra</th>
+                            <th class="text-center">Fecha de Baja</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Color</th>
+                            <th class="text-center" style="width:9%">Opciones</th>
+                        </tr>
+                        <tr ng-repeat="activo in activoCtrl.listaActivosFijos| filter:search as filtered"
+                            ng-init="activoIndex = $index + 1">
+                            <td> 
+                                <div class="input-gro center-block">
+                                    <input class="form-control" disabled="true"  id="{{'activo' + activoIndex}}" value="{{activoIndex}}">
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.nombre}}
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.descripcion}}
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.serial}}
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.serialInventario}}
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.peso}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group center-block">
+                                    {{activo.alto}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group center-block">
+                                    {{activo.largo}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group center-block">
+                                    {{activo.valorCompra}}
+                                </div>
+                            </td>
+                            <td> 
+                                <div class="input-group center-block">
+                                    {{activo.fechaCompra}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group center-block">
+                                    {{activo.fechaBaja}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group">
+                                    {{activo.estado}}
+                                </div>
+                            </td>
+                            <td > 
+                                <div class="input-group center-block">
+                                    {{activo.color}}
+                                </div>
+                            </td>
+                            <td >
+                                <div class="text-center center-block" >
+                                    <button  title="Editar" class="btn btn-info btn-tools-table">
+                                        <i class="glyphicon glyphicon-erase"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </form>  
+    </div>
 </div>
 

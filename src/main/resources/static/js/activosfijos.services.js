@@ -7,18 +7,14 @@
 (function () {
     'use strict';
     angular.module('app').service('activosFijosServices', activosFijosServices);
-    activosFijosServices.$inject = ['$http', '$q', 'growl'];
-    function activosFijosServices($http, $q, growl) {
+    activosFijosServices.$inject = ['$http', '$q'];
+    function activosFijosServices($http, $q) {
         var servicioActivos = this;
         servicioActivos.registrarActivo = postActivos;
         servicioActivos.actulizarActivo = putActivos;
         servicioActivos.buscarActivos = getActivos;
         servicioActivos.buscarActivosByParametros = getActivosByParametro;
-
-
-        var url = '/localhost/9999/ActivoFijo/';
-
-
+        var url = '/ActivoFijo/';
         function postActivos(activo) {
             var defered = $q.defer();
             var urlRequest = url;
@@ -60,12 +56,5 @@
             var urlRequest = url + 'findBy';
             return ejecutarServicesGet(urlRequest);
         }
-
-
-
-
-
-
-
     }
 })();
