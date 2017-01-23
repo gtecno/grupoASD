@@ -32,20 +32,23 @@ public class ConstanteUtil {
      *
      * MENSAJE DE ERROR INTERNO DEL SISTEMA  CODE_INTERNAL_ERROR 
      */
-    public static String MSG_ERROR_INTERNO ="Se ha producido un error en el sistema  a acontinuación se detalle el error:  ";
+    public static String MSG_ERROR_INTERNO = "Se ha producido un error en el sistema  a acontinuación se detalle el error:  ";
     /*
      *
      * MENSAJE DE ERROR DE FECHAS 
      */
-    public static String MSG_ERROR_FECHAS_MAYOR="La fecha de baja no puede ser mayor que la fecha de compra  ";
+    public static String MSG_ERROR_FECHAS_MAYOR = "La fecha de baja no puede ser mayor que la fecha de compra  ";
 
-    
-    
-    
     public static final String FORMATO_FECHA = "yyyy-MM-dd";
     public static final String FORMATO_FECHA_CON_HORA = "dd/MM/yyyy hh:mm:ss a";
-    
-    
-    public static final Calendar FECHA_ACTUAL = Calendar.getInstance();
 
+    public static final Calendar FECHA_ACTUAL = Calendar.getInstance();
+    public static final int CERO = 0;
+
+    /*
+     *
+     * MENSAJE DE BUSQUEDA SIN COINCIDENCIAS
+     */
+     public static String MSG_BUSQUEDA_SIN_COINCIDENCIAS= "La búsqueda no arrojó resultados";
+     public static String MSG_RESULTADOS = "La búsqueda arrojó el siguiente resultado";
 }

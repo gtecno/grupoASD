@@ -5,6 +5,7 @@
  */
 package com.cloud.spring.pruebaGrupoASD.dominio;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -12,6 +13,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -24,18 +27,31 @@ public class ActivosFijos {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @NotEmpty
     private String nombre;
+    @NotEmpty
     private String descripcion;
+    @NotEmpty
     private String serial;
+    @NotEmpty
     private String serialInventario;
+    @NotNull
     private Float peso;
+    @NotNull
     private Float alto;
+    @NotNull
     private Float largo;
+    @NotNull
     private Double valorCompra;
+    @NotNull
     private Calendar fechaCompra;
+    @NotNull
     private Calendar fechaBaja;
+    
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Estado estado;
+    @NotEmpty
     private String color;
 
     public ActivosFijos() {

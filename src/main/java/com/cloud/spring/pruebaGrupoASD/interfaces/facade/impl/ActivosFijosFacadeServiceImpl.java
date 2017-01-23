@@ -13,8 +13,11 @@ import com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto.ActivosFijosDTO;
 import com.cloud.spring.pruebaGrupoASD.util.ObjectMapperUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.ConstanteUtil;
 import com.cloud.spring.pruebaGrupoASD.util.comun.FechaConverUtil;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +32,7 @@ import org.springframework.stereotype.Service;
 public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ActivosFijosFacadeServiceImpl.class);
-    private ObjectMapper objectMapper = ObjectMapperUtil.getInstanceObjectMapper();
+    private final ObjectMapper objectMapper = ObjectMapperUtil.getInstanceObjectMapper();
     ResponseUtil responseUtil;
 
     @Autowired
@@ -38,8 +41,15 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
     @Override
     public ResponseUtil listarTodosActivosFijos() {
         responseUtil = new ResponseUtil();
-        activosFijosService.listarTodosActivosFijos();
-        
+        List<ActivosFijos> listaActivoFijos = activosFijosService.listarTodosActivosFijos();
+        if (listaActivoFijos.size() < ConstanteUtil.CERO) {
+            responseUtil.setMessage(ConstanteUtil.MSG_BUSQUEDA_SIN_COINCIDENCIAS);
+            responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
+        } else {
+            responseUtil.setResponseList(assembleActivosFijosDTO(listaActivoFijos));
+            responseUtil.setMessage(ConstanteUtil.MSG_RESULTADOS);
+            responseUtil.setTipo(ConstanteUtil.CODE_OK);
+        }
         return responseUtil;
     }
 
@@ -82,7 +92,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
 
     @Override
     public ResponseUtil actulizarActivosFijos(ActivosFijosDTO activosFijosDTO) {
-         LOGGER.info("Update: ");
+        LOGGER.info("Update: ");
         responseUtil = new ResponseUtil();
         try {
             Calendar fechaCompra = FechaConverUtil.convertStringToCalendar(activosFijosDTO.getFechaCompra());
@@ -117,6 +127,28 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         activosFijos.setFechaCompra(fechaCompra);
         activosFijos.setFechaBaja(fechaBaja);
         return activosFijos;
+    }
+
+    private List<JsonNode> assembleActivosFijosDTO(List<ActivosFijos> activosFijoses) {
+        List<JsonNode> activosFijosDTOJsonNode = new ArrayList<>();
+        ActivosFijosDTO activosFijosDTOAssemble;
+        for (ActivosFijos activosFijos : activosFijoses) {
+            activosFijosDTOAssemble = new ActivosFijosDTO(activosFijos.id(),
+                    activosFijos.nombre(),
+                    activosFijos.descripcion(),
+                    activosFijos.serial(),
+                    activosFijos.serialInventario(),
+                    activosFijos.peso(),
+                    activosFijos.alto(),
+                    activosFijos.largo(),
+                    activosFijos.valorCompra(),
+                    null,
+                    null,
+                    activosFijos.estado().toString(),
+                    activosFijos.color());
+            activosFijosDTOJsonNode.add(objectMapper.convertValue(activosFijosDTOAssemble, JsonNode.class));
+        }
+        return activosFijosDTOJsonNode;
     }
 
 }
