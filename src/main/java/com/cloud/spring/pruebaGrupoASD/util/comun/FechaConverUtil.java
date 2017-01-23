@@ -34,10 +34,18 @@ public class FechaConverUtil {
 
         return calendar;
     }
-    
-     public static Boolean compararFechasBajaMayor(Calendar fechaUno, Calendar fechaDos){
-         return fechaUno.before(fechaDos);
-     }
-    
+
+    public static Boolean compararFechasBajaMayor(Calendar fechaUno, Calendar fechaDos) {
+        return fechaUno.before(fechaDos);
+    }
+
+    public static String convertirCalendarToString(Calendar fechaCalendar) {
+        String fechaString = null;
+        SimpleDateFormat sdf = new SimpleDateFormat(ConstanteUtil.FORMATO_FECHA);
+        if (fechaCalendar != null) {
+            fechaString = sdf.format(fechaCalendar.getTime());
+        }
+        return fechaString;
+    }
 
 }

@@ -143,8 +143,8 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
                     activosFijos.alto(),
                     activosFijos.largo(),
                     activosFijos.valorCompra(),
-                    null,
-                    null,
+                    FechaConverUtil.convertirCalendarToString(activosFijos.fechaCompra()),
+                    FechaConverUtil.convertirCalendarToString(activosFijos.fechaBaja()),
                     activosFijos.estado().toString(),
                     activosFijos.color());
             activosFijosDTOJsonNode.add(objectMapper.convertValue(activosFijosDTOAssemble, JsonNode.class));
