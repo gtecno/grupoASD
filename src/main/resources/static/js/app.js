@@ -8,10 +8,10 @@ var app = angular.module('app', ['ngRoute', 'ngResource']);
 app.config(function ($routeProvider) {
     $routeProvider
             .when('/activos', {
-                templateUrl: 'static/view/activosfijos.html'
+                templateUrl: 'view/activosfijos.html'
             })
             .when('/gestionar-activos', {
-                templateUrl: 'static/view/gestionar-activos-fijos.html'
+                templateUrl: 'view/gestionar-activos-fijos.html'
             })
             .otherwise(
                     {redirectTo: '/'}
