@@ -10,6 +10,7 @@
     activosController.$inject = ['activosFijosServices', '$location', '$window', '$http'];
     function activosController(activosFijosServices, $location, $window, $http) {
         var gestionActivos = this;
+        gestionActivos.activos =  activosFijosServices.activos;
         gestionActivos.listaActivosFijos = [];
 
 

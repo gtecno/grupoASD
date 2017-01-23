@@ -14,6 +14,7 @@
         servicioActivos.actulizarActivo = putActivos;
         servicioActivos.buscarActivos = getActivos;
         servicioActivos.buscarActivosByParametros = getActivosByParametro;
+        servicioActivos.activos = {};
         var url = '/ActivoFijo/';
         function postActivos(activo) {
             var defered = $q.defer();
