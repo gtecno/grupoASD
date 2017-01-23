@@ -5,7 +5,6 @@
  */
 package com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto;
 
-
 /**
  *
  * @author Gabriel Calvo
@@ -22,7 +21,7 @@ public class ActivosFijosDTO {
     private Float alto;
     private Float largo;
     private Double valorCompra;
-    private String  fechaCompra;
+    private String fechaCompra;
     private String fechaBaja;
     private String estado;
     private String color;
@@ -47,10 +46,6 @@ public class ActivosFijosDTO {
         this.color = color;
     }
 
-   
-
-  
-
     public Long getId() {
         return id;
     }
@@ -58,7 +53,7 @@ public class ActivosFijosDTO {
     public String getTipo() {
         return tipo;
     }
-    
+
     public String getNombre() {
         return nombre;
     }
@@ -106,5 +101,4 @@ public class ActivosFijosDTO {
     public String getColor() {
         return color;
     }
-
 }
