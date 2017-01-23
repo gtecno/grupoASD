@@ -12,6 +12,7 @@ package com.cloud.spring.pruebaGrupoASD.dominio;
 public enum Tipo {
 
     INMUEBLE("INMUEBLE"), MAQUINARIA("MAQUINARIA"), OFICINA("OFICINA");
+    
     private String valor;
 
     private Tipo(String valor) {
@@ -21,4 +22,7 @@ public enum Tipo {
     private Tipo() {
     }
 
+    public String getValor() {
+        return valor;
+    }
 }

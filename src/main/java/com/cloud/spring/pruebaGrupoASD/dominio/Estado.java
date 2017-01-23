@@ -11,7 +11,6 @@ package com.cloud.spring.pruebaGrupoASD.dominio;
  */
 public enum Estado {
     
-//    (activo,	dado	de	baja,	en	reparación,	disponible,	asignado)
 
     ACTIVO("ACTIVO"), DISPONIBLE("DISPONIBLE"),REPARACION("EN REPARCION"), ASIGNADO("ASIGNADO"), BAJA("DADO DE BAJA");
 
@@ -23,5 +22,11 @@ public enum Estado {
 
     private Estado() {
     }
+
+    public String getValor() {
+        return valor;
+    }
+    
+    
 
 }
