@@ -13,6 +13,7 @@ package com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto;
 public class ActivosFijosDTO {
 
     private Long id;
+    private String tipo;
     private String nombre;
     private String descripcion;
     private String serial;
@@ -29,8 +30,9 @@ public class ActivosFijosDTO {
     public ActivosFijosDTO() {
     }
 
-    public ActivosFijosDTO(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, String fechaCompra, String fechaBaja, String estado, String color) {
+    public ActivosFijosDTO(Long id, String tipo, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, String fechaCompra, String fechaBaja, String estado, String color) {
         this.id = id;
+        this.tipo = tipo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.serial = serial;
@@ -45,12 +47,18 @@ public class ActivosFijosDTO {
         this.color = color;
     }
 
+   
+
   
 
     public Long getId() {
         return id;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+    
     public String getNombre() {
         return nombre;
     }

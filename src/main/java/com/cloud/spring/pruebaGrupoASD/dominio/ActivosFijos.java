@@ -26,7 +26,11 @@ public class ActivosFijos {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Tipo tipo;
+
     @NotEmpty
     private String nombre;
     @NotEmpty
@@ -47,7 +51,7 @@ public class ActivosFijos {
     private Calendar fechaCompra;
     @NotNull
     private Calendar fechaBaja;
-    
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private Estado estado;
@@ -57,8 +61,9 @@ public class ActivosFijos {
     public ActivosFijos() {
     }
 
-    public ActivosFijos(Long id, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, Estado estado, String color) {
+    public ActivosFijos(Long id, Tipo tipo, String nombre, String descripcion, String serial, String serialInventario, Float peso, Float alto, Float largo, Double valorCompra, Calendar fechaCompra, Calendar fechaBaja, Estado estado, String color) {
         this.id = id;
+        this.tipo = tipo;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.serial = serial;
@@ -75,6 +80,10 @@ public class ActivosFijos {
 
     public Long id() {
         return id;
+    }
+
+    public Tipo tipo() {
+        return tipo;
     }
 
     public String nombre() {
@@ -132,6 +141,5 @@ public class ActivosFijos {
     public void setFechaBaja(Calendar fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
-    
-    
+
 }

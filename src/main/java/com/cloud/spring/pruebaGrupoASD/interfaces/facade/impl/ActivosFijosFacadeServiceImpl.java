@@ -134,6 +134,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         ActivosFijosDTO activosFijosDTOAssemble;
         for (ActivosFijos activosFijos : activosFijoses) {
             activosFijosDTOAssemble = new ActivosFijosDTO(activosFijos.id(),
+                    activosFijos.tipo().toString(),
                     activosFijos.nombre(),
                     activosFijos.descripcion(),
                     activosFijos.serial(),
