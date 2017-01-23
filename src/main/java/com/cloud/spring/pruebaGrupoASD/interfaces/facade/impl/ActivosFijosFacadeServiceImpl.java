@@ -68,7 +68,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
             if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
                 ActivosFijos activosFijosGuardado = activosFijosService.actulizarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
                 if (activosFijosGuardado != null) {
-                    responseUtil.setMessage(ConstanteUtil.MSG_UPDATE_EXITOSO);
+                    responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
                     responseUtil.setTipo(ConstanteUtil.CODE_OK);
                     LOGGER.info("ActivoFijo Guardado : ");
                 } else {
@@ -100,7 +100,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
             if (FechaConverUtil.compararFechasBajaMayor(fechaBaja, fechaCompra)) {
                 ActivosFijos activosFijosGuardado = activosFijosService.guardarActivosFijos(assemble(activosFijosDTO, fechaCompra, fechaBaja));
                 if (activosFijosGuardado != null) {
-                    responseUtil.setMessage(ConstanteUtil.MSG_REGISTRO_EXITOSO);
+                    responseUtil.setMessage(ConstanteUtil.MSG_UPDATE_EXITOSO);
                     responseUtil.setTipo(ConstanteUtil.CODE_OK);
                     LOGGER.info("ActivoFijo Actulizado : ");
                 } else {
