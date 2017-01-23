@@ -15,6 +15,7 @@
         servicioActivos.buscarActivos = getActivos;
         servicioActivos.buscarActivosByParametros = getActivosByParametro;
         servicioActivos.activos = {};
+        servicioActivos.activosFijos = {};
         var url = '/ActivoFijo/';
         function postActivos(activo) {
             var defered = $q.defer();
@@ -53,7 +54,7 @@
             return ejecutarServicesGet(urlRequest);
         }
 
-        function getActivosByParametro() {
+        function getActivosByParametro(columna,parametro) {
             var urlRequest = url + 'findBy';
             return ejecutarServicesGet(urlRequest);
         }

@@ -7,29 +7,24 @@
     <div class="clearfix"></div>
     <div class="container">
         <form class="form-inline">
-            <div>
-                <select class="selectpicker" ng-model="activoCtrl.activo.columna" >
-                    <option selected>Seleccione</option>
-                    <option value="0" >Tipo</option>
-                    <option value="1">Fecha de compra</option>
-                    <option value="2">Serial</option>
-                    <!--<option value="3">Todos</option>-->
-                </select>
-            </div>
-            <div>
-                <input type="text" ng-model="activoCtrl.activo.criterio" placeholder="Buscar">
-            </div>
-            <div>
-                <button  title="Buscar" class="btn btn-info" ng-click="activoCtrl.onBuscarActivosFijosPorParametro(activoCtrl.activo.columna, activoCtrl.activo.criterio)">
-                    <i class="glyphicon glyphicon-search"></i>
-                </button>
-            </div>
+            <select class="selectpicker form-control" ng-model="activoCtrl.activo.columna" >
+                <option selected >Seleccione</option>
+                <option value="0" >Tipo</option>
+                <option value="1">Fecha de compra</option>
+                <option value="2">Serial</option>
+            </select>
+            <input type="text" class="form-control" ng-model="activoCtrl.activo.criterio" placeholder="Buscar">
+            <button  title="Buscar" class="form-control btn btn-info" ng-click="activoCtrl.onBuscarActivosFijosPorParametro(activoCtrl.activo.columna, activoCtrl.activo.criterio)">
+                <i class="glyphicon glyphicon-search"></i>
+            </button>
         </form>
+        <div class="clearfix"></div>
+        <br/><br/>
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-condensed table-hover" >
-                <thead>
+            <table class="table table-bordered table-striped table-condensed table-hover table-fixed" >
+                <thead class="thead-inverse">
                     <tr style="font-weight: bold">
-                        <th class="text-center">#</th>
+                        <th style="width:7%" class="text-center">#</th>
                         <th class="text-center">Tipo</th>
                         <th class="text-center">Nombre Activo</th>
                         <th class="text-center">Descripción</th>
@@ -43,8 +38,10 @@
                         <th class="text-center">Fecha de Baja</th>
                         <th class="text-center">Estado</th>
                         <th class="text-center">Color</th>
-                        <th class="text-center" style="width:9%">Opciones</th>
+                        <th class="text-center" style="width:7%">Opciones</th>
                     </tr>
+                </thead>
+                <tbody> 
                     <tr ng-repeat="activo in activoCtrl.listaActivosFijos| filter:search as filtered"
                         ng-init="activoIndex = $index + 1">
                         <td> 
@@ -54,6 +51,7 @@
                         </td>
                         <td> 
                             <div class="input-group center-block">
+                                {{activo.tipo}}
                             </div>
                         </td>
                         <td> 
@@ -78,22 +76,22 @@
                         </td>
                         <td> 
                             <div class="input-group center-block">
-                                {{activo.peso}}
+                                {{activo.peso| number:2}}
                             </div>
                         </td>
                         <td > 
                             <div class="input-group center-block">
-                                {{activo.alto}}
+                                {{activo.alto| number:2}}
                             </div>
                         </td>
                         <td > 
                             <div class="input-group center-block">
-                                {{activo.largo}}
+                                {{activo.largo| number:2}}
                             </div>
                         </td>
                         <td > 
                             <div class="input-group center-block">
-                                {{activo.valorCompra}}
+                                {{activo.valorCompra| currency}}
                             </div>
                         </td>
                         <td> 
@@ -118,13 +116,13 @@
                         </td>
                         <td >
                             <div class="text-center center-block" >
-                                <button  title="Editar" class="btn btn-info btn-tools-table">
+                                <button  title="Editar" class="btn btn-info btn-tools-table" ng-click="(activoCtrl.onClickToEditarActivo(activo))">
                                     <i class="glyphicon glyphicon-erase"></i>
                                 </button>
                             </div>
                         </td>
                     </tr>
-                </thead>
+                </tbody>
             </table>
         </div>
     </div>

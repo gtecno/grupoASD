@@ -10,3 +10,12 @@
     margin-left: 10%;
     float:left;
 }
+
+.table-fixed thead {
+  width: 97%;
+}
+.table-fixed tbody {
+  height: 230px;
+  overflow-y: auto;
+  width: 100%;
+}
