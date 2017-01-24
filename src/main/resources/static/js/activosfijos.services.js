@@ -54,8 +54,8 @@
             return ejecutarServicesGet(urlRequest);
         }
 
-        function getActivosByParametro(columna,parametro) {
-            var urlRequest = url + 'findBy';
+        function getActivosByParametro(parametro, valor) {
+            var urlRequest = url + 'findByParametro/' + parametro + '/' + valor;
             return ejecutarServicesGet(urlRequest);
         }
     }

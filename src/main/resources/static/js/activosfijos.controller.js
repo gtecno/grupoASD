@@ -7,8 +7,8 @@
 (function () {
     'use strict';
     angular.module('app').controller('activosController', activosController);
-    activosController.$inject = ['activosFijosServices', '$location', '$window', '$http'];
-    function activosController(activosFijosServices, $location, $window, $http) {
+    activosController.$inject = ['activosFijosServices', '$location', '$window', '$http', 'appConstant'];
+    function activosController(activosFijosServices, $location, $window, $http, appConstant) {
         var gestionActivos = this;
         gestionActivos.activos = activosFijosServices.activos;
         gestionActivos.activosFijos = activosFijosServices.activosFijos;
@@ -18,14 +18,30 @@
         function onBuscarTodosActivosFijos() {
             gestionActivos.listaActivosFijos = [];
             activosFijosServices.buscarActivos().then(function (data) {
-                gestionActivos.listaActivosFijos = data.responseList;
+                switch (data.tipo) {
+                    case 200:
+                        gestionActivos.listaActivosFijos = data.responseList;
+                        appConstant.MSG_GROWL_OK(data.message);
+                        break;
+                    case 404:
+                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                        break;
+                }
             });
         }
 
-        gestionActivos.onBuscarActivosFijosPorParametro = function (columna, parametro) {
+        gestionActivos.onBuscarActivosFijosPorParametro = function (parametro, valor) {
             gestionActivos.listaActivosFijos = [];
-            activosFijosServices.buscarActivosByParametros(columna, parametro).then(function (data) {
-                gestionActivos.listaActivosFijos = data.responseList;
+            activosFijosServices.buscarActivosByParametros(parametro, parametro === '1' ? formatDate(valor) : valor).then(function (data) {
+                switch (data.tipo) {
+                    case 200:
+                        gestionActivos.listaActivosFijos = data.responseList;
+                        appConstant.MSG_GROWL_OK(data.message);
+                        break;
+                    case 404:
+                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                        break;
+                }
             });
         };
 
@@ -36,7 +52,7 @@
             gestionActivos.activosFijos.nombre = null;
             gestionActivos.activosFijos.descripcion = null;
             gestionActivos.activosFijos.serial = null;
-            gestionActivos.activosFijos.serialInventario =null;
+            gestionActivos.activosFijos.serialInventario = null;
             gestionActivos.activosFijos.peso = null;
             gestionActivos.activosFijos.altura = null;
             gestionActivos.activosFijos.largo = null;
@@ -58,8 +74,8 @@
             gestionActivos.activosFijos.altura = item.alto;
             gestionActivos.activosFijos.largo = item.largo;
             gestionActivos.activosFijos.valorCompra = item.valorCompra;
-            gestionActivos.activosFijos.fechaCompra = item.fechaCompra;
-            gestionActivos.activosFijos.fechaBaja = item.fechaBaja;
+            gestionActivos.activosFijos.fechaCompra = toDate(item.fechaCompra);
+            gestionActivos.activosFijos.fechaBaja = toDate(item.fechaBaja);
             gestionActivos.activosFijos.estado = item.estado;
             gestionActivos.activosFijos.color = item.color;
             $location.path('/gestionar-activos');
@@ -85,9 +101,22 @@
                     "color": gestionActivos.activosFijos.color
                 };
                 activosFijosServices.registrarActivo(activoFijo).then(function (data) {
-                    onLimpiar();
-                    
-//                    gestionActivos.listaActivosFijos = data.responseList;
+                    switch (data.tipo) {
+                        case 200:
+                            onLimpiar();
+                            appConstant.MSG_GROWL_OK(data.message);
+                            break;
+                        case 400:
+                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                            break;
+                        case 404:
+                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                            break;
+                        case 500:
+                            appConstant.MSG_GROWL_ERROR(data.message);
+                            break;
+
+                    }
                 });
             } else {
                 var activoFijo = {
@@ -107,7 +136,22 @@
                     "color": gestionActivos.activosFijos.color
                 };
                 activosFijosServices.actulizarActivo(activoFijo).then(function (data) {
-                    gestionActivos.listaActivosFijos = data.responseList;
+                    switch (data.tipo) {
+                        case 200:
+//                            onLimpiar();
+                            appConstant.MSG_GROWL_OK(data.message);
+                            break;
+                        case 400:
+                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                            break;
+                        case 404:
+                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                            break;
+                        case 500:
+                            appConstant.MSG_GROWL_ERROR(data.message);
+                            break;
+
+                    }
                 });
 
             }
@@ -121,13 +165,29 @@
                     month = '' + (d.getMonth() + 1),
                     day = '' + d.getDate(),
                     year = d.getFullYear();
-
             if (month.length < 2)
                 month = '0' + month;
             if (day.length < 2)
                 day = '0' + day;
-
             return [year, month, day].join('-');
+        }
+
+        function toDate(dateStr) {
+            var dateStrLong;
+            if (typeof dateStr === 'undefined' || typeof dateStr === null) {
+                dateStr = null;
+                return dateStr;
+            } else {
+                var parts = [];
+                if (dateStr.match('/')) {
+                    parts = dateStr.split('/');
+                } else {
+                    parts = dateStr.split('-');
+                }
+                dateStr = new Date(parts[2], parts[1] - 1, parts[0]);
+                dateStrLong = Date.parse(dateStr);
+                return dateStrLong;
+            }
         }
 
         gestionActivos.onClickToGoListaActivos = function () {

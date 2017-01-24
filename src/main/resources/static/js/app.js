@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('app', ['ngRoute', 'ngResource']);
+var app = angular.module('app', ['ngRoute', 'ngResource','angular-growl']);
 app.config(function ($routeProvider) {
     $routeProvider
             .when('/activos', {

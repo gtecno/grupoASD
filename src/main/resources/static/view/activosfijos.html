@@ -13,7 +13,15 @@
                 <option value="1">Fecha de compra</option>
                 <option value="2">Serial</option>
             </select>
-            <input type="text" class="form-control" ng-model="activoCtrl.activo.criterio" placeholder="Buscar">
+
+            <select ng-if="activoCtrl.activo.columna == 0" class="selectpicker form-control" ng-model="activoCtrl.activo.criterio"  id="tipo">
+                <option value="INMUEBLE" >Bienes inmuebles</option>
+                <option value="MAQUINARIA">Maquinaria</option>
+                <option value="OFICINA">Material de oficina</option>
+            </select>
+            <input ng-if="activoCtrl.activo.columna == 1" type="date" class="form-control" ng-model="activoCtrl.activo.criterio" placeholder="Buscar">
+            <input ng-if="activoCtrl.activo.columna == 2" type="text" class="form-control" ng-model="activoCtrl.activo.criterio" placeholder="Buscar">
+
             <button  title="Buscar" class="form-control btn btn-info" ng-click="activoCtrl.onBuscarActivosFijosPorParametro(activoCtrl.activo.columna, activoCtrl.activo.criterio)">
                 <i class="glyphicon glyphicon-search"></i>
             </button>
@@ -46,7 +54,7 @@
                         ng-init="activoIndex = $index + 1">
                         <td> 
                             <div class="input-gro center-block">
-                                <input class="form-control" disabled="true"  id="{{'activo' + activoIndex}}" value="{{activoIndex}}">
+                                {{activoIndex}}
                             </div>
                         </td>
                         <td> 
