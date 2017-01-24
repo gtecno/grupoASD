@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.cloud.spring.pruebaGrupoASD.dominio;
 
 import java.util.Calendar;
 import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -20,6 +20,7 @@ public interface ActivosFijosRepository extends CrudRepository<ActivosFijos, Lon
 
     public List<ActivosFijos> findByFechaCompra(Calendar fechaCompra);
 
+    @Query("select activo from ActivosFijos activo where activo.serial like ?1%")
     public List<ActivosFijos> findBySerialEndingWith(String parametro);
-    
+
 }

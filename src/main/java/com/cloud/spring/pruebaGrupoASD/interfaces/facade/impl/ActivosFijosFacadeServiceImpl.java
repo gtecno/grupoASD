@@ -175,7 +175,7 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
 
     private ResponseUtil validarListaDeConsulta(List<ActivosFijos> listaActivoFijos) {
         responseUtil = new ResponseUtil();
-        if (listaActivoFijos.size() < ConstanteUtil.CERO) {
+        if (listaActivoFijos.isEmpty()) {
             responseUtil.setMessage(ConstanteUtil.MSG_BUSQUEDA_SIN_COINCIDENCIAS);
             responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
         } else {

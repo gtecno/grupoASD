@@ -45,7 +45,7 @@ public class ActivosFijosRecurso {
         return escanerFacadeService.buscarActivosFijosById(id);
     }
     
-     @RequestMapping(value = "findByParametro/{columan}/{parametro}", method = RequestMethod.GET)
+     @RequestMapping(value = "findByParametro/{columna}/{parametro}", method = RequestMethod.GET)
     public ResponseUtil buscarActivosFijosByParametro(@PathVariable Integer columna, @PathVariable String parametro) {
         return escanerFacadeService.buscarActivosFijosByParametro(columna,parametro);
     }
