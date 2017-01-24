@@ -22,4 +22,6 @@ public interface ActivosFijosFacadeService {
 
    ResponseUtil actulizarActivosFijos(ActivosFijosDTO activosFijosDTO);
 
+    ResponseUtil buscarActivosFijosByParametro(Integer columna, String parametro);
+
 }

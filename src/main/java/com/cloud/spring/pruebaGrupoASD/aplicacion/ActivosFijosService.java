@@ -6,6 +6,8 @@
 package com.cloud.spring.pruebaGrupoASD.aplicacion;
 
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijos;
+import com.cloud.spring.pruebaGrupoASD.dominio.Tipo;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -19,4 +21,10 @@ public interface ActivosFijosService {
     ActivosFijos actulizarActivosFijos(ActivosFijos activosFijos);
 
     List<ActivosFijos> listarTodosActivosFijos();
+
+    List<ActivosFijos> findByTipo(Tipo tipo);
+
+    List<ActivosFijos> findByFechaCompra(Calendar fechaCompra);
+
+    List<ActivosFijos> findBySerial(String serial);
 }

@@ -44,6 +44,11 @@ public class ActivosFijosRecurso {
     public ResponseUtil buscarActivosFijosById(@PathVariable Long id) {
         return escanerFacadeService.buscarActivosFijosById(id);
     }
+    
+     @RequestMapping(value = "findByParametro/{columan}/{parametro}", method = RequestMethod.GET)
+    public ResponseUtil buscarActivosFijosByParametro(@PathVariable Integer columna, @PathVariable String parametro) {
+        return escanerFacadeService.buscarActivosFijosByParametro(columna,parametro);
+    }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)

@@ -44,11 +44,15 @@ public class ConstanteUtil {
 
     public static final Calendar FECHA_ACTUAL = Calendar.getInstance();
     public static final int CERO = 0;
+    public static final int UNO = 1;
+    public static final int DOS = 2;
 
     /*
      *
      * MENSAJE DE BUSQUEDA SIN COINCIDENCIAS
      */
-     public static String MSG_BUSQUEDA_SIN_COINCIDENCIAS= "La búsqueda no arrojó resultados";
-     public static String MSG_RESULTADOS = "La búsqueda arrojó el siguiente resultado";
+    public static final String MSG_BUSQUEDA_SIN_COINCIDENCIAS = "La búsqueda no arrojó resultados";
+    public static final String MSG_RESULTADOS = "La búsqueda arrojó el siguiente resultado";
+    public static final String COLUMNA_VACIA = "Debe Seleccionar un criterio de busquedá";
+    public static final String COLUMNA_INVALIDAD = "Criterio de busqueda invalido";
 }

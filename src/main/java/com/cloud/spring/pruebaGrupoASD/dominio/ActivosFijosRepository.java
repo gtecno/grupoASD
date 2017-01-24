@@ -6,6 +6,8 @@
 
 package com.cloud.spring.pruebaGrupoASD.dominio;
 
+import java.util.Calendar;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +15,11 @@ import org.springframework.data.repository.CrudRepository;
  * @author Gabriel Calvo
  */
 public interface ActivosFijosRepository extends CrudRepository<ActivosFijos, Long> {
+
+    public List<ActivosFijos> findByTipo(Tipo tipo);
+
+    public List<ActivosFijos> findByFechaCompra(Calendar fechaCompra);
+
+    public List<ActivosFijos> findBySerialEndingWith(String parametro);
     
 }

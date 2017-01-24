@@ -8,6 +8,8 @@ package com.cloud.spring.pruebaGrupoASD.aplicacion.impl;
 import com.cloud.spring.pruebaGrupoASD.aplicacion.ActivosFijosService;
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijos;
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijosRepository;
+import com.cloud.spring.pruebaGrupoASD.dominio.Tipo;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,21 @@ public class ActivosFijosServiceImpl implements ActivosFijosService {
     @Override
     public List<ActivosFijos> listarTodosActivosFijos() {
         return (List<ActivosFijos>) activosFijosRepository.findAll();
+    }
+
+    @Override
+    public List<ActivosFijos> findByTipo(Tipo tipo) {
+        return activosFijosRepository.findByTipo(tipo);
+    }
+
+    @Override
+    public List<ActivosFijos> findByFechaCompra(Calendar fechaCompra) {
+        return activosFijosRepository.findByFechaCompra(fechaCompra);
+    }
+
+    @Override
+    public List<ActivosFijos> findBySerial(String serial) {
+        return activosFijosRepository.findBySerialEndingWith(serial);
     }
 
 }

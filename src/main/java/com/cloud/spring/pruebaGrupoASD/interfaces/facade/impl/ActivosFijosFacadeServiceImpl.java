@@ -7,6 +7,7 @@ package com.cloud.spring.pruebaGrupoASD.interfaces.facade.impl;
 
 import com.cloud.spring.pruebaGrupoASD.aplicacion.ActivosFijosService;
 import com.cloud.spring.pruebaGrupoASD.dominio.ActivosFijos;
+import com.cloud.spring.pruebaGrupoASD.dominio.Tipo;
 import com.cloud.spring.pruebaGrupoASD.util.comun.ResponseUtil;
 import com.cloud.spring.pruebaGrupoASD.interfaces.facade.ActivosFijosFacadeService;
 import com.cloud.spring.pruebaGrupoASD.interfaces.facade.dto.ActivosFijosDTO;
@@ -40,17 +41,8 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
 
     @Override
     public ResponseUtil listarTodosActivosFijos() {
-        responseUtil = new ResponseUtil();
         List<ActivosFijos> listaActivoFijos = activosFijosService.listarTodosActivosFijos();
-        if (listaActivoFijos.size() < ConstanteUtil.CERO) {
-            responseUtil.setMessage(ConstanteUtil.MSG_BUSQUEDA_SIN_COINCIDENCIAS);
-            responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
-        } else {
-            responseUtil.setResponseList(assembleActivosFijosDTO(listaActivoFijos));
-            responseUtil.setMessage(ConstanteUtil.MSG_RESULTADOS);
-            responseUtil.setTipo(ConstanteUtil.CODE_OK);
-        }
-        return responseUtil;
+        return validarListaDeConsulta(listaActivoFijos);
     }
 
     @Override
@@ -122,6 +114,35 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         return responseUtil;
     }
 
+    @Override
+    public ResponseUtil buscarActivosFijosByParametro(Integer columna, String parametro) {
+        LOGGER.info("Consultar por parametro: ");
+        responseUtil = new ResponseUtil();
+        if (columna != null) {
+            //tipo enumeracion
+            if (columna.equals(ConstanteUtil.CERO)) {
+                return validarListaDeConsulta(activosFijosService.findByTipo(Tipo.valueOf(parametro)));
+                //fecha de compra
+            } else if (columna.equals(ConstanteUtil.UNO)) {
+                return validarListaDeConsulta(activosFijosService.findByFechaCompra(FechaConverUtil.convertStringToCalendar(parametro)));
+                //serial
+            } else if (columna.equals(ConstanteUtil.DOS)) {
+                return validarListaDeConsulta(activosFijosService.findBySerial(parametro));
+            } else {
+                LOGGER.warn(" ¡ Parametro Invalido !");
+                responseUtil.setMessage(ConstanteUtil.COLUMNA_INVALIDAD);
+                responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
+                return responseUtil;
+            }
+        } else {
+            LOGGER.warn(" ¡ busqueda sin paramatero de  consulta !");
+            responseUtil.setMessage(ConstanteUtil.COLUMNA_VACIA);
+            responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
+            return responseUtil;
+
+        }
+    }
+
     private ActivosFijos assemble(ActivosFijosDTO activosFijosDTO, Calendar fechaCompra, Calendar fechaBaja) {
         ActivosFijos activosFijos = objectMapper.convertValue(activosFijosDTO, ActivosFijos.class);
         activosFijos.setFechaCompra(fechaCompra);
@@ -152,4 +173,16 @@ public class ActivosFijosFacadeServiceImpl implements ActivosFijosFacadeService 
         return activosFijosDTOJsonNode;
     }
 
+    private ResponseUtil validarListaDeConsulta(List<ActivosFijos> listaActivoFijos) {
+        responseUtil = new ResponseUtil();
+        if (listaActivoFijos.size() < ConstanteUtil.CERO) {
+            responseUtil.setMessage(ConstanteUtil.MSG_BUSQUEDA_SIN_COINCIDENCIAS);
+            responseUtil.setTipo(ConstanteUtil.CODE_ERROR);
+        } else {
+            responseUtil.setResponseList(assembleActivosFijosDTO(listaActivoFijos));
+            responseUtil.setMessage(ConstanteUtil.MSG_RESULTADOS);
+            responseUtil.setTipo(ConstanteUtil.CODE_OK);
+        }
+        return responseUtil;
+    }
 }
