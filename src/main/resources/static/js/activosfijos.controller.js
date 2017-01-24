@@ -7,8 +7,8 @@
 (function () {
     'use strict';
     angular.module('app').controller('activosController', activosController);
-    activosController.$inject = ['activosFijosServices', '$location', '$window', '$http', 'appConstant'];
-    function activosController(activosFijosServices, $location, $window, $http, appConstant) {
+    activosController.$inject = ['activosFijosServices', '$location', '$window', '$http', 'appConstant', 'growl'];
+    function activosController(activosFijosServices, $location, $window, $http, appConstant, growl) {
         var gestionActivos = this;
         gestionActivos.activos = activosFijosServices.activos;
         gestionActivos.activosFijos = activosFijosServices.activosFijos;
@@ -21,10 +21,12 @@
                 switch (data.tipo) {
                     case 200:
                         gestionActivos.listaActivosFijos = data.responseList;
-                        appConstant.MSG_GROWL_OK(data.message);
+//                        $window.alert("<div><table><tr><td><i class='glyphicon glyphicon-ok' style='padding-left: 15px;font-size: 20px;'></i></td>&nbsp;&nbsp;<td  style='padding-left: 16px;'><span><strong>BIEN HECHO</strong><BR><span>" + data.message + "</span></span></td></tr><table></div>");
+//                        appConstant.MSG_GROWL_OK(data.message);
                         break;
                     case 404:
-                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                        $window.alert(data.message);
+//                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                         break;
                 }
             });
@@ -36,10 +38,12 @@
                 switch (data.tipo) {
                     case 200:
                         gestionActivos.listaActivosFijos = data.responseList;
-                        appConstant.MSG_GROWL_OK(data.message);
+//                       $window.alert("<div><table><tr><td><i class='glyphicon glyphicon-ok' style='padding-left: 15px;font-size: 20px;'></i></td>&nbsp;&nbsp;<td  style='padding-left: 16px;'><span><strong>BIEN HECHO</strong><BR><span>" + data.message + "</span></span></td></tr><table></div>");
+//                        appConstant.MSG_GROWL_OK(data.message);
                         break;
                     case 404:
-                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                        $window.alert(data.message);
+//                        appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                         break;
                 }
             });
@@ -104,16 +108,19 @@
                     switch (data.tipo) {
                         case 200:
                             onLimpiar();
-                            appConstant.MSG_GROWL_OK(data.message);
+//                            appConstant.MSG_GROWL_OK(data.message);
                             break;
                         case 400:
-                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                            $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 404:
-                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                             $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 500:
-                            appConstant.MSG_GROWL_ERROR(data.message);
+                             $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ERROR(data.message);
                             break;
 
                     }
@@ -139,18 +146,20 @@
                     switch (data.tipo) {
                         case 200:
 //                            onLimpiar();
-                            appConstant.MSG_GROWL_OK(data.message);
+//                            appConstant.MSG_GROWL_OK(data.message);
                             break;
                         case 400:
-                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                             $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 404:
-                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
+                             $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 500:
-                            appConstant.MSG_GROWL_ERROR(data.message);
+                             $window.alert(data.message);
+//                            appConstant.MSG_GROWL_ERROR(data.message);
                             break;
-
                     }
                 });
 
