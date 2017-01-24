@@ -108,6 +108,7 @@
                     switch (data.tipo) {
                         case 200:
                             onLimpiar();
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_OK(data.message);
                             break;
                         case 400:
@@ -115,11 +116,11 @@
 //                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 404:
-                             $window.alert(data.message);
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 500:
-                             $window.alert(data.message);
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_ERROR(data.message);
                             break;
 
@@ -146,18 +147,19 @@
                     switch (data.tipo) {
                         case 200:
 //                            onLimpiar();
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_OK(data.message);
                             break;
                         case 400:
-                             $window.alert(data.message);
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 404:
-                             $window.alert(data.message);
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_ADVERTENCIA(data.message);
                             break;
                         case 500:
-                             $window.alert(data.message);
+                            $window.alert(data.message);
 //                            appConstant.MSG_GROWL_ERROR(data.message);
                             break;
                     }
